@@ -12,18 +12,7 @@ export const App = () => {
 // /*
 //  * Стили компонента ImageGallery
 //  */
-// .ImageGallery {
-//   display: grid;
-//   max-width: calc(100vw - 48px);
-//   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-//   grid-gap: 16px;
-//   margin-top: 0;
-//   margin-bottom: 0;
-//   padding: 0;
-//   list-style: none;
-//   margin-left: auto;
-//   margin-right: auto;
-// }
+/
 
 // /*
 //  * Стили компонента ImageGalleryItem
@@ -49,24 +38,6 @@ export const App = () => {
 // /*
 //  * Стили компонента Modal
 //  */
-
-// .Overlay {
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: rgba(0, 0, 0, 0.8);
-//   z-index: 1200;
-// }
-
-// .Modal {
-//   max-width: calc(100vw - 48px);
-//   max-height: calc(100vh - 24px);
-// }
 
 // /*
 // * Стили компонента Buton (Load more)
