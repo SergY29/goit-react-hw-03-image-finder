@@ -24,7 +24,7 @@ export class App extends Component {
   };
 
   render() {
-    const { search } = this.state;
+    const { search, status } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
@@ -34,7 +34,7 @@ export class App extends Component {
             onStatusChange={this.changeStatus}
           />
         )}
-        {false && <Loader />}
+        {status === 'loading' && <Loader />}
         <ToastContainer autoClose={2000} />
       </AppStyled>
     );
