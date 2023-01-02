@@ -30,7 +30,7 @@ export class ImageGallery extends Component {
           return;
         }
         this.setState({ imagesList: arrayImages });
-        console.log(arrayImages);
+        // console.log(arrayImages);
       } catch (error) {
         toast.error('Opps! Something went wrong');
         console.log(error);
