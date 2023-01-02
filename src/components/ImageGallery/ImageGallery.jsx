@@ -24,13 +24,13 @@ export class ImageGallery extends Component {
         const { data } = await axios.get(
           `https://pixabay.com/api/?q=${this.props.searchImages}&page=1&key=31232052-ebca7977e423ff0aad3113109&image_type=photo&orientation=horizontal&per_page=12`
         );
-        const arrayImages = data.hits;
-        if (arrayImages.length === 0) {
+        if (data.hits.length === 0) {
           toast.error('Opps! Something went wrong');
           return;
         }
-        this.setState({ imagesList: arrayImages });
-        // console.log(arrayImages);
+        this.setState({ imagesList: data });
+        toast.success(`Hooray! We found ${data.totalHits} images.`);
+        console.log(data);
       } catch (error) {
         toast.error('Opps! Something went wrong');
         console.log(error);
@@ -46,7 +46,7 @@ export class ImageGallery extends Component {
       <>
         {imagesList && (
           <Gallery>
-            {imagesList.map(image => (
+            {imagesList.hits.map(image => (
               <ImageGalleryItem key={image.id} image={image} />
             ))}
           </Gallery>
