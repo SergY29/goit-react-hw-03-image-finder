@@ -19,13 +19,16 @@ export class ImageGallery extends Component {
   async componentDidUpdate(prevProps) {
     const nextRequest = this.props.searchImages;
     const prevRequest = prevProps.searchImages;
+    const prevPage = this.props.page;
+    const nextPage = prevProps.page;
     const { onStatusChange } = this.props;
 
-    if (prevRequest !== nextRequest) {
+    if (prevRequest !== nextRequest || prevPage !== nextPage) {
       onStatusChange(STATUS.loading);
+      console.log(nextPage);
       try {
         const { data } = await axios.get(
-          `https://pixabay.com/api/?q=${nextRequest}&page=1&key=31232052-ebca7977e423ff0aad3113109&image_type=photo&orientation=horizontal&per_page=12`
+          `https://pixabay.com/api/?q=${nextRequest}&page=${prevPage}&key=31232052-ebca7977e423ff0aad3113109&image_type=photo&orientation=horizontal&per_page=12`
         );
         if (data.hits.length === 0) {
           toast.warn(`Sorry! We didn't find anything, change your request`);
@@ -33,6 +36,9 @@ export class ImageGallery extends Component {
         }
         this.setState({ imagesList: data });
         this.props.onRecordingImagesList(data.hits);
+        if (prevPage !== nextPage) {
+          return;
+        }
         toast.success(`Hooray! We found ${data.totalHits} images.`);
       } catch (error) {
         toast.error('Opps! Something went wrong');

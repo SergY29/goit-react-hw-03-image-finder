@@ -12,6 +12,7 @@ import { Modal } from './Modal';
 
 export class App extends Component {
   state = {
+    page: 1,
     search: '',
     status: '',
     imagesList: null,
@@ -19,12 +20,16 @@ export class App extends Component {
     largeImage: null,
   };
 
+  loadMore = () => {
+    this.setState(prevState => ({ page: prevState.page + 1 }));
+  };
+
   changeStatus = value => {
     this.setState({ status: value });
   };
 
   handleFormSubmit = search => {
-    this.setState({ search });
+    this.setState({ page: 1, search, imagesList: null });
   };
 
   recordingImagesList = imagesList => {
@@ -40,11 +45,13 @@ export class App extends Component {
   };
 
   render() {
-    const { search, status, imagesList, showModal, largeImage } = this.state;
+    const { page, search, status, imagesList, showModal, largeImage } =
+      this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
         <ImageGallery
+          page={page}
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
@@ -64,7 +71,7 @@ export class App extends Component {
         {showModal && (
           <Modal largeImg={largeImage} onToggle={this.toggleModal} />
         )}
-        {imagesList && <ButtonLoadMore />}
+        {imagesList && <ButtonLoadMore loadMore={this.loadMore} />}
       </AppStyled>
     );
   }
