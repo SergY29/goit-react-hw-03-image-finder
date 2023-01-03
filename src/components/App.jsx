@@ -8,14 +8,15 @@ import { Loader } from './Loader';
 import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
 import { ImageGalleryItem } from './ImageGalleryItem';
-// import { Modal } from './Modal';
+import { Modal } from './Modal';
 
 export class App extends Component {
   state = {
     search: '',
     status: '',
     imagesList: null,
-    // showModal: false,
+    showModal: false,
+    largeImage: '',
   };
 
   changeStatus = value => {
@@ -30,12 +31,16 @@ export class App extends Component {
     this.setState({ imagesList });
   };
 
-  // toggleModal = value => {
-  //   this.setState({ showModal: !value });
-  // };
+  writeLargeImage = largeImage => {
+    this.setState({ largeImage });
+  };
+
+  toggleModal = () => {
+    this.setState({ showModal: !this.state.showModal });
+  };
 
   render() {
-    const { search, status, imagesList } = this.state;
+    const { search, status, imagesList, showModal, largeImage } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
@@ -49,14 +54,14 @@ export class App extends Component {
             <ImageGalleryItem
               key={image.id}
               image={image.webformatURL}
-              // onToggle={this.toggleModal}
-              // showModal={showModal}
-            >
-              {/* {showModal && <Modal largeImg={image.largeImageURL} />} */}
-            </ImageGalleryItem>
+              onToggle={this.toggleModal}
+              writeLargeImage={this.writeLargeImage}
+              big={image.largeImageURL}
+            ></ImageGalleryItem>
           ))}
         </ImageGallery>
         {status === 'loading' && <Loader />}
+        {showModal && <Modal largeImg={largeImage} />}
         <ToastContainer autoClose={2000} />
       </AppStyled>
     );
