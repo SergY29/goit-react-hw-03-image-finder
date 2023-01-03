@@ -25,3 +25,8 @@ export const Button = styled.button`
     background-color: #303f9f;
   }
 `;
+
+export const Div = styled.div`
+  display: flex;
+  justify-content: center;
+`;

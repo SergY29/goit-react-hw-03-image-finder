@@ -4,7 +4,7 @@ import { Component } from 'react';
 
 import { AppStyled } from './App.styled';
 import { Loader } from './Loader';
-// import { ButtonLoadMore } from './Button';
+import { ButtonLoadMore } from './Button';
 import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
 import { ImageGalleryItem } from './ImageGalleryItem';
@@ -61,10 +61,10 @@ export class App extends Component {
         </ImageGallery>
         {status === 'loading' && <Loader />}
         <ToastContainer autoClose={2000} />
-
         {showModal && (
           <Modal largeImg={largeImage} onToggle={this.toggleModal} />
         )}
+        {imagesList && <ButtonLoadMore />}
       </AppStyled>
     );
   }
