@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import { Gallery } from './ImageGallery.styled';
-import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 
 import axios from 'axios';
 
@@ -45,20 +44,6 @@ export class ImageGallery extends Component {
 
   render() {
     const { imagesList } = this.state;
-    return (
-      <>
-        {imagesList && (
-          <Gallery>
-            {imagesList.hits.map(image => (
-              <ImageGalleryItem
-                key={image.id}
-                image={image.webformatURL}
-                largeImage={image.largeImageURL}
-              />
-            ))}
-          </Gallery>
-        )}
-      </>
-    );
+    return <>{imagesList && <Gallery>{this.props.children}</Gallery>}</>;
   }
 }

@@ -7,6 +7,7 @@ import { Loader } from './Loader';
 // import { ButtonLoadMore } from './Button';
 import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
+import { ImageGalleryItem } from './ImageGallery/ImageGalleryItem/ImageGalleryItem';
 
 export class App extends Component {
   state = {
@@ -36,20 +37,18 @@ export class App extends Component {
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
-        ></ImageGallery>
+        >
+          {imagesList?.map(image => (
+            <ImageGalleryItem
+              key={image.id}
+              image={image.webformatURL}
+              largeImage={image.largeImageURL}
+            />
+          ))}
+        </ImageGallery>
         {status === 'loading' && <Loader />}
         <ToastContainer autoClose={2000} />
       </AppStyled>
     );
   }
 }
-
-// {
-//   imagesList.hits.map(image => (
-//     <ImageGalleryItem
-//       key={image.id}
-//       image={image.webformatURL}
-//       largeImage={image.largeImageURL}
-//     />
-//   ));
-// }
