@@ -32,14 +32,7 @@ export class App extends Component {
     this.setState({ page: 1, search, imagesList: null });
   };
 
-  // recordingImagesList = () => {
-  //   this.setState({
-  //     imagesList: [...this.state.imagesList, ...this.state.firstList],
-  //   });
-  // };
-
   recordingImagesList = data => {
-    // console.log(this.state.imagesList);
     if (!this.state.imagesList) {
       this.setState({ imagesList: data });
       return;
