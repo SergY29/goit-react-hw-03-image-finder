@@ -81,7 +81,9 @@ export class App extends Component {
         {showModal && (
           <Modal largeImg={largeImage} onToggle={this.toggleModal} />
         )}
-        {imagesList && <ButtonLoadMore loadMore={this.loadMore} />}
+        {imagesList && status !== 'loading' && (
+          <ButtonLoadMore loadMore={this.loadMore} />
+        )}
       </AppStyled>
     );
   }
