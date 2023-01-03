@@ -6,13 +6,13 @@ import { AppStyled } from './App.styled';
 import { Loader } from './Loader';
 // import { ButtonLoadMore } from './Button';
 import { ImageGallery } from './ImageGallery';
-// import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Searchbar } from './Searchbar';
 
 export class App extends Component {
   state = {
     search: '',
     status: '',
+    imagesList: null,
   };
 
   changeStatus = value => {
@@ -23,20 +23,33 @@ export class App extends Component {
     this.setState({ search });
   };
 
+  recordingImagesList = imagesList => {
+    this.setState({ imagesList });
+  };
+
   render() {
-    const { search, status } = this.state;
+    const { search, status, imagesList } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
-        {true && (
-          <ImageGallery
-            searchImages={search}
-            onStatusChange={this.changeStatus}
-          />
-        )}
+        <ImageGallery
+          searchImages={search}
+          onStatusChange={this.changeStatus}
+          onRecordingImagesList={this.recordingImagesList}
+        ></ImageGallery>
         {status === 'loading' && <Loader />}
         <ToastContainer autoClose={2000} />
       </AppStyled>
     );
   }
 }
+
+// {
+//   imagesList.hits.map(image => (
+//     <ImageGalleryItem
+//       key={image.id}
+//       image={image.webformatURL}
+//       largeImage={image.largeImageURL}
+//     />
+//   ));
+// }

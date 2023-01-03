@@ -1,11 +1,11 @@
-// import { Overlay, Modal } from './Modal.styled';
+import { Overlay, Modalwindow } from './Modal.styled';
 
-// export const Modal = () => {
-//   return (
-//     <Overlay>
-//       <Modal>
-//         <img src="" alt="" />
-//       </Modal>
-//     </Overlay>
-//   );
-// };
+export const Modal = ({ largeImg }) => {
+  return (
+    <Overlay>
+      <Modalwindow>
+        <img src={largeImg} />
+      </Modalwindow>
+    </Overlay>
+  );
+};
