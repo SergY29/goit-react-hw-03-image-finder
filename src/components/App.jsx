@@ -7,7 +7,7 @@ import { Loader } from './Loader';
 // import { ButtonLoadMore } from './Button';
 import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
-import { ImageGalleryItem } from './ImageGallery/ImageGalleryItem/ImageGalleryItem';
+import { ImageGalleryItem } from './ImageGalleryItem';
 
 export class App extends Component {
   state = {
