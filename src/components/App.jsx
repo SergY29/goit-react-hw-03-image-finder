@@ -44,7 +44,6 @@ export class App extends Component {
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
-
         <ImageGallery
           searchImages={search}
           onStatusChange={this.changeStatus}
@@ -56,7 +55,7 @@ export class App extends Component {
               image={image.webformatURL}
               onToggle={this.toggleModal}
               writeLargeImage={this.writeLargeImage}
-              big={image.largeImageURL}
+              bigImg={image.largeImageURL}
             ></ImageGalleryItem>
           ))}
         </ImageGallery>

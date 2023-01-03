@@ -4,7 +4,7 @@ import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
   toggleModal = () => {
-    this.props.writeLargeImage(this.props.big);
+    this.props.writeLargeImage(this.props.bigImg);
     this.props.onToggle();
   };
 
