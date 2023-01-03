@@ -1,5 +1,5 @@
 import { GalleryItem } from './ImageGalleryItem.styled';
-import { Modal } from '../Modal';
+// import { Modal } from '../Modal';
 import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
@@ -18,7 +18,8 @@ export class ImageGalleryItem extends Component {
     return (
       <GalleryItem onClick={this.toggleModal}>
         <img src={image} alt="" />
-        {this.state.showModal && <Modal largeImg={largeImage} />}
+        {this.props.children}
+        {/* {this.state.showModal && <Modal largeImg={largeImage} />} */}
       </GalleryItem>
     );
   }

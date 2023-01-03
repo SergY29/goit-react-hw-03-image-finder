@@ -8,12 +8,14 @@ import { Loader } from './Loader';
 import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
 import { ImageGalleryItem } from './ImageGalleryItem';
+import { Modal } from './Modal';
 
 export class App extends Component {
   state = {
     search: '',
     status: '',
     imagesList: null,
+    showModal: false,
   };
 
   changeStatus = value => {
@@ -29,21 +31,20 @@ export class App extends Component {
   };
 
   render() {
-    const { search, status, imagesList } = this.state;
+    const { search, status, imagesList, showModal } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
+
         <ImageGallery
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
         >
           {imagesList?.map(image => (
-            <ImageGalleryItem
-              key={image.id}
-              image={image.webformatURL}
-              largeImage={image.largeImageURL}
-            />
+            <ImageGalleryItem key={image.id} image={image.webformatURL}>
+              {showModal && <Modal largeImg={image.largeImageURL} />}
+            </ImageGalleryItem>
           ))}
         </ImageGallery>
         {status === 'loading' && <Loader />}
