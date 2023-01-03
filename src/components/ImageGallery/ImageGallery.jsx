@@ -25,7 +25,7 @@ export class ImageGallery extends Component {
 
     if (prevRequest !== nextRequest || prevPage !== nextPage) {
       onStatusChange(STATUS.loading);
-      console.log(nextPage);
+      // console.log(nextPage);
       try {
         const { data } = await axios.get(
           `https://pixabay.com/api/?q=${nextRequest}&page=${prevPage}&key=31232052-ebca7977e423ff0aad3113109&image_type=photo&orientation=horizontal&per_page=12`
@@ -36,6 +36,7 @@ export class ImageGallery extends Component {
         }
         this.setState({ imagesList: data });
         this.props.onRecordingImagesList(data.hits);
+        // this.props.onRecordingImagesList();
         if (prevPage !== nextPage) {
           return;
         }

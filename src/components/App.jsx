@@ -32,8 +32,24 @@ export class App extends Component {
     this.setState({ page: 1, search, imagesList: null });
   };
 
-  recordingImagesList = imagesList => {
-    this.setState({ imagesList });
+  // recordingImagesList = () => {
+  //   this.setState({
+  //     imagesList: [...this.state.imagesList, ...this.state.firstList],
+  //   });
+  // };
+
+  recordingImagesList = data => {
+    // console.log(this.state.imagesList);
+    if (!this.state.imagesList) {
+      this.setState({ imagesList: data });
+      return;
+    }
+    if (this.state.imagesList) {
+      this.setState(prevState => ({
+        imagesList: [...prevState.imagesList, ...data],
+      }));
+      return;
+    }
   };
 
   writeLargeImage = largeImage => {
@@ -55,6 +71,7 @@ export class App extends Component {
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
+          recordingFirstList={this.recordingFirstList}
         >
           {imagesList?.map(image => (
             <ImageGalleryItem
