@@ -16,7 +16,7 @@ export class App extends Component {
     status: '',
     imagesList: null,
     showModal: false,
-    largeImage: '',
+    largeImage: null,
   };
 
   changeStatus = value => {
@@ -36,7 +36,7 @@ export class App extends Component {
   };
 
   toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+    this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   render() {
@@ -60,8 +60,11 @@ export class App extends Component {
           ))}
         </ImageGallery>
         {status === 'loading' && <Loader />}
-        {showModal && <Modal largeImg={largeImage} />}
         <ToastContainer autoClose={2000} />
+
+        {showModal && (
+          <Modal largeImg={largeImage} onToggle={this.toggleModal} />
+        )}
       </AppStyled>
     );
   }

@@ -18,5 +18,3 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
-
-// onClick={this.toggleModal}
