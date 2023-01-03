@@ -5,7 +5,7 @@ export const Modal = ({ largeImg }) => {
   return (
     <Overlay>
       <Modalwindow>
-        <img src={largeImg} />
+        <img src={largeImg} alt="" />
       </Modalwindow>
     </Overlay>
   );
