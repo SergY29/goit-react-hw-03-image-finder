@@ -30,6 +30,10 @@ export class App extends Component {
     this.setState({ imagesList });
   };
 
+  toggleModal = value => {
+    this.setState({ showModal: !value });
+  };
+
   render() {
     const { search, status, imagesList, showModal } = this.state;
     return (
@@ -42,7 +46,12 @@ export class App extends Component {
           onRecordingImagesList={this.recordingImagesList}
         >
           {imagesList?.map(image => (
-            <ImageGalleryItem key={image.id} image={image.webformatURL}>
+            <ImageGalleryItem
+              key={image.id}
+              image={image.webformatURL}
+              onToggle={this.toggleModal}
+              showModal={showModal}
+            >
               {showModal && <Modal largeImg={image.largeImageURL} />}
             </ImageGalleryItem>
           ))}

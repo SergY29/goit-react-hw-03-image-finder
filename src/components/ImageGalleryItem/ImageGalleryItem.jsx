@@ -3,23 +3,16 @@ import { GalleryItem } from './ImageGalleryItem.styled';
 import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
-  state = {
-    showModal: false,
-  };
-
   toggleModal = () => {
-    this.setState(state => ({
-      showModal: !state.showModal,
-    }));
+    this.props.onToggle(this.props.showModal);
   };
 
   render() {
-    const { image, largeImage } = this.props;
+    const { image } = this.props;
     return (
       <GalleryItem onClick={this.toggleModal}>
         <img src={image} alt="" />
         {this.props.children}
-        {/* {this.state.showModal && <Modal largeImg={largeImage} />} */}
       </GalleryItem>
     );
   }
