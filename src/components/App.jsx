@@ -9,7 +9,6 @@ import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import { Modal } from './Modal';
-import { number } from 'prop-types';
 
 export class App extends Component {
   state = {
