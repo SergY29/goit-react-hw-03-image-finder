@@ -23,12 +23,12 @@ export class Searchbar extends Component {
       return;
     }
     this.props.onSubmit(search);
-    this.setState({ search: '' });
+    // this.setState({ search: '' });
   };
 
   handleChange = e => {
     const { name, value } = e.target;
-    const normalizeValue = value.toLowerCase().trim();
+    const normalizeValue = value.toLowerCase();
     this.setState({ [name]: normalizeValue });
   };
 
