@@ -30,6 +30,7 @@ export class ImageGallery extends Component {
           toast.warn(`Sorry! We didn't find anything, change your request`);
           return;
         }
+        onStatusChange(STATUS.succes);
         this.setState({ imagesList: data });
         this.props.onRecordingImagesList(data.hits);
         if (prevPage !== nextPage) {
@@ -37,9 +38,8 @@ export class ImageGallery extends Component {
         }
         toast.success(`Hooray! We found ${data.totalHits} images.`);
       } catch (error) {
+        onStatusChange(STATUS.error);
         toast.error('Opps! Something went wrong');
-      } finally {
-        onStatusChange(STATUS.idle);
       }
     }
   }
