@@ -1,8 +1,7 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
 import { Gallery } from './ImageGallery.styled';
-
-import axios from 'axios';
+import { getImages } from 'components/services/services';
 
 const STATUS = {
   idle: 'idle',
@@ -26,16 +25,7 @@ export class ImageGallery extends Component {
     if (prevRequest !== nextRequest || prevPage !== nextPage) {
       onStatusChange(STATUS.loading);
       try {
-        const { data } = await axios.get('https://pixabay.com/api/', {
-          params: {
-            q: nextRequest,
-            page: prevPage,
-            key: '31232052-ebca7977e423ff0aad3113109',
-            image_type: 'photo',
-            orientation: 'horizontal',
-            per_page: 12,
-          },
-        });
+        const data = await getImages(nextRequest, prevPage);
         if (data.hits.length === 0) {
           toast.warn(`Sorry! We didn't find anything, change your request`);
           return;
