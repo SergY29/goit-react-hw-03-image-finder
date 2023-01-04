@@ -25,18 +25,23 @@ export class ImageGallery extends Component {
 
     if (prevRequest !== nextRequest || prevPage !== nextPage) {
       onStatusChange(STATUS.loading);
-      // console.log(nextPage);
       try {
-        const { data } = await axios.get(
-          `https://pixabay.com/api/?q=${nextRequest}&page=${prevPage}&key=31232052-ebca7977e423ff0aad3113109&image_type=photo&orientation=horizontal&per_page=12`
-        );
+        const { data } = await axios.get('https://pixabay.com/api/', {
+          params: {
+            q: nextRequest,
+            page: prevPage,
+            key: '31232052-ebca7977e423ff0aad3113109',
+            image_type: 'photo',
+            orientation: 'horizontal',
+            per_page: 12,
+          },
+        });
         if (data.hits.length === 0) {
           toast.warn(`Sorry! We didn't find anything, change your request`);
           return;
         }
         this.setState({ imagesList: data });
         this.props.onRecordingImagesList(data.hits);
-        // this.props.onRecordingImagesList();
         if (prevPage !== nextPage) {
           return;
         }
