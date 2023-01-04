@@ -34,6 +34,7 @@ export class ImageGallery extends Component {
         onStatusChange(STATUS.succes);
         this.setState({ imagesList: data });
         this.props.onRecordingImagesList(data.hits);
+        this.props.onWriteTotalHits(data.totalHits);
         if (prevPage !== nextPage) {
           return;
         }
@@ -54,6 +55,7 @@ export class ImageGallery extends Component {
 ImageGallery.propTypes = {
   onStatusChange: PropTypes.func.isRequired,
   onRecordingImagesList: PropTypes.func.isRequired,
+  onWriteTotalHits: PropTypes.func.isRequired,
   searchImages: PropTypes.string.isRequired,
   page: PropTypes.number.isRequired,
 };

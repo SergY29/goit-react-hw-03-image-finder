@@ -9,6 +9,7 @@ import { ImageGallery } from './ImageGallery';
 import { Searchbar } from './Searchbar';
 import { ImageGalleryItem } from './ImageGalleryItem';
 import { Modal } from './Modal';
+import { number } from 'prop-types';
 
 export class App extends Component {
   state = {
@@ -18,6 +19,7 @@ export class App extends Component {
     imagesList: null,
     showModal: false,
     largeImage: null,
+    totalhits: 0,
   };
 
   loadMore = () => {
@@ -49,13 +51,24 @@ export class App extends Component {
     this.setState({ largeImage });
   };
 
+  writeTotalHits = totalhits => {
+    this.setState({ totalhits });
+  };
+
   toggleModal = () => {
     this.setState(({ showModal }) => ({ showModal: !showModal }));
   };
 
   render() {
-    const { page, search, status, imagesList, showModal, largeImage } =
-      this.state;
+    const {
+      page,
+      search,
+      status,
+      imagesList,
+      showModal,
+      largeImage,
+      totalhits,
+    } = this.state;
     return (
       <AppStyled>
         <Searchbar onSubmit={this.handleFormSubmit} />
@@ -64,6 +77,7 @@ export class App extends Component {
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
+          onWriteTotalHits={this.writeTotalHits}
         >
           {imagesList?.map(image => (
             <ImageGalleryItem
@@ -80,7 +94,7 @@ export class App extends Component {
         {showModal && (
           <Modal largeImg={largeImage} onToggle={this.toggleModal} />
         )}
-        {imagesList && status !== 'loading' && (
+        {imagesList && status !== 'loading' && totalhits > 12 && (
           <ButtonLoadMore loadMore={this.loadMore} />
         )}
       </AppStyled>
