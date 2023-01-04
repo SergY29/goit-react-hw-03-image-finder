@@ -1,5 +1,6 @@
-import { Component } from 'react';
+import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { Component } from 'react';
 import { Gallery } from './ImageGallery.styled';
 import { getImages } from 'components/services/services';
 
@@ -49,3 +50,10 @@ export class ImageGallery extends Component {
     return <>{imagesList && <Gallery>{this.props.children}</Gallery>}</>;
   }
 }
+
+ImageGallery.propTypes = {
+  onStatusChange: PropTypes.func.isRequired,
+  onRecordingImagesList: PropTypes.func.isRequired,
+  searchImages: PropTypes.string.isRequired,
+  page: PropTypes.number.isRequired,
+};

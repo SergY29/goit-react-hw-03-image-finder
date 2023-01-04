@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Component } from 'react';
-import { Overlay, Modalwindow } from './Modal.styled';
 import { createPortal } from 'react-dom';
+import { Overlay, Modalwindow } from './Modal.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -37,3 +38,8 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  largeImg: PropTypes.string.isRequired,
+};

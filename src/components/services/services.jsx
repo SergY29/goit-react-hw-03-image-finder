@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import axios from 'axios';
 
 export const getImages = async (nextRequest, prevPage) => {
@@ -13,4 +15,9 @@ export const getImages = async (nextRequest, prevPage) => {
   });
 
   return data;
+};
+
+getImages.propTypes = {
+  nextRequest: PropTypes.string.isRequired,
+  prevPage: PropTypes.number.isRequired,
 };

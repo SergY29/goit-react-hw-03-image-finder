@@ -1,6 +1,6 @@
-import { GalleryItem } from './ImageGalleryItem.styled';
-// import { Modal } from '../Modal';
+import PropTypes from 'prop-types';
 import { Component } from 'react';
+import { GalleryItem } from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   toggleModal = () => {
@@ -18,3 +18,9 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
+
+ImageGalleryItem.propTypes = {
+  onToggle: PropTypes.func.isRequired,
+  writeLargeImage: PropTypes.func.isRequired,
+  bigImg: PropTypes.string.isRequired,
+};

@@ -64,7 +64,6 @@ export class App extends Component {
           searchImages={search}
           onStatusChange={this.changeStatus}
           onRecordingImagesList={this.recordingImagesList}
-          recordingFirstList={this.recordingFirstList}
         >
           {imagesList?.map(image => (
             <ImageGalleryItem
@@ -81,7 +80,7 @@ export class App extends Component {
         {showModal && (
           <Modal largeImg={largeImage} onToggle={this.toggleModal} />
         )}
-        {imagesList && status !== 'loading' && imagesList.length > 12 && (
+        {imagesList && status !== 'loading' && (
           <ButtonLoadMore loadMore={this.loadMore} />
         )}
       </AppStyled>
